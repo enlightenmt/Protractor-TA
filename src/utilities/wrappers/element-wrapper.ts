@@ -1,6 +1,7 @@
 import { browser, ElementFinder, Locator, until } from "protractor";
 
 export default class ElementWrapper {
+    private _elementTimeout: number = 60;
     private _by: Locator;
     private _element: ElementFinder;
 
@@ -30,5 +31,13 @@ export default class ElementWrapper {
 
     public async isDisplayed(): Promise<boolean> {
         return await this._element.isDisplayed();
+    }
+
+    public async getText(): Promise<string> {
+        try {
+            return await this._element.getText();
+        } catch (err) {
+            throw err;
+        }
     }
 }
